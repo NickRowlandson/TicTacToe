@@ -8,7 +8,7 @@ using namespace std;
 
 char slot[10] = { 'o','1','2','3','4','5','6','7','8','9' };
 
-string checkWin();
+string checkStatus();
 void board();
 
 int main()
@@ -76,7 +76,7 @@ int main()
 				cin.ignore();
 				cin.get();
 			}
-			i = checkWin();
+			i = checkStatus();
 			player++;
 		} while (i == "inProgress");
 
@@ -84,11 +84,11 @@ int main()
 
 		if (i == "winner")
 		{
-			cout << "==>\aPlayer " << --player << " win!";
+			cout << "\a==> Player " << --player << " win!";
 		}
 		else
 		{
-			cout << "==>\aGame Draw...";
+			cout << "\a==> Game draw...";
 		}
 
 		cin.ignore();
@@ -167,7 +167,7 @@ winner = game over with winner
 inProgress = game is still in progress
 tie =  tie between player one and two
 **********************************************/
-string checkWin()
+string checkStatus()
 {
 	if (slot[1] == slot[2] && slot[2] == slot[3])
 	{

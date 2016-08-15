@@ -136,25 +136,27 @@ void board()
 	// clear screen 
 	system("cls");
 
-	cout << "\n\n\tTic Tac Toe\n\n";
+	cout << "\n\n\t\t   Tic Tac Toe\n\n";
 
-	cout << "Player 1 (X)  -  Player 2 (O)" << endl << endl;
+	cout << "\t  Player 1 (X)  -  Player 2 (O)" << endl << endl;
 	cout << endl;
 
-	cout << "     |     |     " << endl;
-	cout << "  " << slot[1] << "  |  " << slot[2] << "  |  " << slot[3] << endl;
+	cout << "\t\t _________________" << endl;
+	cout << "\t\t|     |     |     |" << endl;
+	cout << "\t\t|  " << slot[1] << "  |  " << slot[2] << "  |  " << slot[3] <<  "  |" << endl;
 
-	cout << "_____|_____|_____" << endl;
-	cout << "     |     |     " << endl;
+	cout << "\t\t|_____|_____|_____|" << endl;
+	cout << "\t\t|     |     |     |" << endl;
 
-	cout << "  " << slot[4] << "  |  " << slot[5] << "  |  " << slot[6] << endl;
+	cout << "\t\t|  " << slot[4] << "  |  " << slot[5] << "  |  " << slot[6] << "  |" << endl;
 
-	cout << "_____|_____|_____" << endl;
-	cout << "     |     |     " << endl;
+	cout << "\t\t|_____|_____|_____|" << endl;
+	cout << "\t\t|     |     |     |" << endl ;
 
-	cout << "  " << slot[7] << "  |  " << slot[8] << "  |  " << slot[9] << endl;
+	cout << "\t\t|  " << slot[7] << "  |  " << slot[8] << "  |  " << slot[9] << "  |" << endl;
 
-	cout << "     |     |     " << endl << endl;
+	cout << "\t\t|_____|_____|_____|" << endl << endl;
+	cout << endl;
 }
 
 /*********************************************

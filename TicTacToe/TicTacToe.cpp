@@ -14,12 +14,13 @@ void board();
 int main()
 {
 	bool playAgain = true;
-	int player = 1, choice;
+	int choice;
 	string i, playAgainChoice;
 	char mark;
 
 	while(playAgain)
 	{
+		int player = 1;
 		bool correctSelection = false;
 		do
 		{

@@ -7,12 +7,13 @@
 using namespace std;
 
 char slot[10] = { 'o','1','2','3','4','5','6','7','8','9' };
-int checkWin();
+string checkWin();
 void board();
 
 int main()
 {
-	int player = 1, i, choice;
+	int player = 1, choice;
+	string i;
 	char mark;
 
 	do
@@ -72,11 +73,11 @@ int main()
 		i = checkWin();
 
 		player++;
-	} while (i == -1);
+	} while (i == "inProgress");
 
 	board();
 
-	if (i == 1)
+	if (i == "winner")
 	{
 		cout << "==>\aPlayer " << --player << " win ";
 	}
@@ -89,61 +90,6 @@ int main()
 	cin.get();
 	return 0;
 }
-
-/*********************************************
-Function returns game status
-1 FOR GAME IS OVER WITH RESULT
--1 FOR GAME IS IN PROGRESS
-O GAME IS OVER AND NO RESULT
-**********************************************/
-
-int checkWin()
-{
-	if (slot[1] == slot[2] && slot[2] == slot[3])
-	{
-		return 1;
-	}
-	else if (slot[4] == slot[5] && slot[5] == slot[6])
-	{
-		return 1;
-	}
-	else if (slot[7] == slot[8] && slot[8] == slot[9])
-	{
-		return 1;
-	}
-	else if (slot[1] == slot[4] && slot[4] == slot[7])
-	{
-		return 1;
-	}
-	else if (slot[2] == slot[5] && slot[5] == slot[8])
-	{
-		return 1;
-	}
-	else if (slot[3] == slot[6] && slot[6] == slot[9])
-	{
-		return 1;
-	}
-	else if (slot[1] == slot[5] && slot[5] == slot[9])
-	{
-		return 1;
-	}
-	else if (slot[3] == slot[5] && slot[5] == slot[7])
-	{
-		return 1;
-	}
-	else if (slot[1] != '1' && slot[2] != '2' && slot[3] != '3'
-		&& slot[4] != '4' && slot[5] != '5' && slot[6] != '6'
-		&& slot[7] != '7' && slot[8] != '8' && slot[9] != '9')
-	{
-		return 0;
-	}
-	else
-	{
-		return -1;
-	}
-
-}
-
 
 //FUNCTION TO DRAW BOARD OF TIC TAC TOE WITH PLAYERS MARK
 
@@ -171,4 +117,57 @@ void board()
 	cout << "     |     |     " << endl << endl;
 }
 
+/*********************************************
+Function returns game status.
+winner = game over with winner
+inProgress = game is still in progress
+tie =  tie between player one and two
+**********************************************/
+
+string checkWin()
+{
+	if (slot[1] == slot[2] && slot[2] == slot[3])
+	{
+		return "inProgress";
+	}
+	else if (slot[4] == slot[5] && slot[5] == slot[6])
+	{
+		return "inProgress";
+	}
+	else if (slot[7] == slot[8] && slot[8] == slot[9])
+	{
+		return "inProgress";
+	}
+	else if (slot[1] == slot[4] && slot[4] == slot[7])
+	{
+		return "inProgress";
+	}
+	else if (slot[2] == slot[5] && slot[5] == slot[8])
+	{
+		return "inProgress";
+	}
+	else if (slot[3] == slot[6] && slot[6] == slot[9])
+	{
+		return "inProgress";
+	}
+	else if (slot[1] == slot[5] && slot[5] == slot[9])
+	{
+		return "inProgress";
+	}
+	else if (slot[3] == slot[5] && slot[5] == slot[7])
+	{
+		return "inProgress";
+	}
+	else if (slot[1] != '1' && slot[2] != '2' && slot[3] != '3'
+		&& slot[4] != '4' && slot[5] != '5' && slot[6] != '6'
+		&& slot[7] != '7' && slot[8] != '8' && slot[9] != '9')
+	{
+		return "tie";
+	}
+	else
+	{
+		return "winner";
+	}
+
+}
 //END OF PROJECT

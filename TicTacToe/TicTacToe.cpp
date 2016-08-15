@@ -13,13 +13,14 @@ void board();
 
 int main()
 {
-	bool playAgain = true, correctSelection = false;
+	bool playAgain = true;
 	int player = 1, choice;
 	string i, playAgainChoice;
 	char mark;
 
 	while(playAgain)
 	{
+		bool correctSelection = false;
 		do
 		{
 			board();
@@ -169,35 +170,35 @@ string checkWin()
 {
 	if (slot[1] == slot[2] && slot[2] == slot[3])
 	{
-		return "inProgress";
+		return "winner";
 	}
 	else if (slot[4] == slot[5] && slot[5] == slot[6])
 	{
-		return "inProgress";
+		return "winner";
 	}
 	else if (slot[7] == slot[8] && slot[8] == slot[9])
 	{
-		return "inProgress";
+		return "winner";
 	}
 	else if (slot[1] == slot[4] && slot[4] == slot[7])
 	{
-		return "inProgress";
+		return "winner";
 	}
 	else if (slot[2] == slot[5] && slot[5] == slot[8])
 	{
-		return "inProgress";
+		return "winner";
 	}
 	else if (slot[3] == slot[6] && slot[6] == slot[9])
 	{
-		return "inProgress";
+		return "winner";
 	}
 	else if (slot[1] == slot[5] && slot[5] == slot[9])
 	{
-		return "inProgress";
+		return "winner";
 	}
 	else if (slot[3] == slot[5] && slot[5] == slot[7])
 	{
-		return "inProgress";
+		return "winner";
 	}
 	else if (slot[1] != '1' && slot[2] != '2' && slot[3] != '3'
 		&& slot[4] != '4' && slot[5] != '5' && slot[6] != '6'
@@ -207,7 +208,7 @@ string checkWin()
 	}
 	else
 	{
-		return "winner";
+		return "inProgress";
 	}
 
 }

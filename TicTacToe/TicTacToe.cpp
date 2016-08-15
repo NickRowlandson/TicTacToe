@@ -1,4 +1,7 @@
 // TIC TAC TOE
+//Timothy Harasym - 200186529
+//Nicholas Rowlandson - 200167125
+
 #include "stdafx.h"
 #include <iostream>
 using namespace std;

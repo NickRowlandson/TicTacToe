@@ -1,14 +1,15 @@
 // TIC TAC TOE
-//Timothy Harasym - 200186529
-//Nicholas Rowlandson - 200167125
+// Timothy Harasym - 200186529
+// Nicholas Rowlandson - 200167125
 
 #include "stdafx.h"
 #include <iostream>
 using namespace std;
 
+// Initialize check win condition function, draw board function, and slot array.
 char slot[10] = { 'o','1','2','3','4','5','6','7','8','9' };
 int checkWin();
-void board();
+void drawBoard();
 
 int main()
 {
@@ -17,7 +18,7 @@ int main()
 
 	do
 	{
-		board();
+		drawBoard();
 		player = (player % 2) ? 1 : 2;
 
 		cout << "Player " << player << ", enter a number:  ";
@@ -74,7 +75,7 @@ int main()
 		player++;
 	} while (i == -1);
 
-	board();
+	drawBoard();
 
 	if (i == 1)
 	{
@@ -148,7 +149,7 @@ int checkWin()
 //FUNCTION TO DRAW BOARD OF TIC TAC TOE WITH PLAYERS MARK
 
 
-void board()
+void drawBoard()
 {
 	system("cls");
 	cout << "\n\n\tTic Tac Toe\n\n";
@@ -172,4 +173,4 @@ void board()
 	cout << "     |     |     " << endl << endl;
 }
 
-//END OF PROJECT
+//END

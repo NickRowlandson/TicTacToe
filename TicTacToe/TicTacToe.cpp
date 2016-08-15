@@ -1,9 +1,9 @@
 // TIC TAC TOE
-//Timothy Harasym - 200186529
-//Nicholas Rowlandson - 200167125
+// Timothy Harasym - 200186529
+// Nicholas Rowlandson - 200167125
 
-#include "stdafx.h"
-#include <iostream>
+#include "header.h"
+
 using namespace std;
 
 char slot[10] = { 'o','1','2','3','4','5','6','7','8','9' };
@@ -146,7 +146,6 @@ int checkWin()
 
 
 //FUNCTION TO DRAW BOARD OF TIC TAC TOE WITH PLAYERS MARK
-
 
 void board()
 {

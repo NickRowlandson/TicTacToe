@@ -15,15 +15,15 @@ void board();
 
 int main()
 {
-	bool playAgain = true;
+	bool playAgain = true, validInput = false;
 	
 
 	while (playAgain)
 	{
 		bool correctSelection = false;
 		string i, playAgainChoice;
-		char mark;
-		int player = 1, choice;
+		char mark, choice;
+		int player = 1;
 
 		// colors
 		hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -44,7 +44,7 @@ int main()
 			}
 
 			// ask current player to enter a number
-			SetConsoleTextAttribute(hConsole, yellow);
+			SetConsoleTextAttribute(hConsole, yellow); 
 			cout << "\t  ==> ";
 			SetConsoleTextAttribute(hConsole, white);
 			cout << "Player " << player << ", enter a number:  ";
@@ -61,46 +61,45 @@ int main()
 			}
 
 			// if chosen slot is empty, replace slot number with player mark in slot array
-			if (choice == 1 && slot[1] == '1')
+			if (choice == '1' && slot[1] == '1')
 			{
 				slot[1] = mark;
 			}
-			else if (choice == 2 && slot[2] == '2')
+			else if (choice == '2' && slot[2] == '2')
 			{
 				slot[2] = mark;
 			}
-			else if (choice == 3 && slot[3] == '3')
+			else if (choice == '3' && slot[3] == '3')
 			{
 				slot[3] = mark;
 			}
-			else if (choice == 4 && slot[4] == '4')
+			else if (choice == '4' && slot[4] == '4')
 			{
 				slot[4] = mark;
 			}
-			else if (choice == 5 && slot[5] == '5')
+			else if (choice == '5' && slot[5] == '5')
 			{
 				slot[5] = mark;
 			}
-			else if (choice == 6 && slot[6] == '6')
+			else if (choice == '6' && slot[6] == '6')
 			{
 				slot[6] = mark;
 			}
-			else if (choice == 7 && slot[7] == '7')
+			else if (choice == '7' && slot[7] == '7')
 			{
 				slot[7] = mark;
 			}
-			else if (choice == 8 && slot[8] == '8')
+			else if (choice == '8' && slot[8] == '8')
 			{
 				slot[8] = mark;
 			}
-			else if (choice == 9 && slot[9] == '9')
+			else if (choice == '9' && slot[9] == '9')
 			{
 				slot[9] = mark;
 			}
 			else
 			{
 				cout << "\t  Invalid Selection. Select an empty slot. ";
-
 				player--;
 				cin.ignore();
 				cin.get();

@@ -7,19 +7,23 @@
 using namespace std;
 
 char slot[10] = { 'o','1','2','3','4','5','6','7','8','9' };
+int score[2] = { 0, 0 };
+
 string checkStatus();
+int main();
 void board();
 
 int main()
 {
 	bool playAgain = true;
+	
 
-	while(playAgain)
+	while (playAgain)
 	{
 		bool correctSelection = false;
-		int player = 1, choice;
 		string i, playAgainChoice;
 		char mark;
+		int player = 1, choice;
 
 		// colors
 		hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -34,7 +38,7 @@ int main()
 			{
 				player = 1;
 			}
-			else 
+			else
 			{
 				player = 2;
 			}
@@ -116,6 +120,7 @@ int main()
 			cout << "\a\t  ==> ";
 			SetConsoleTextAttribute(hConsole, white);
 			cout << "Player " << --player << " wins!";
+			score[player - 1] = score[player - 1] + 1;
 		}
 		else
 		{
@@ -129,13 +134,13 @@ int main()
 		cin.get();
 
 		// check to make sure valid selection for play again was made 
-		while(!correctSelection)
+		while (!correctSelection)
 		{
 			// ask if player wants to go again
 			SetConsoleTextAttribute(hConsole, yellow);
 			cout << "\t  ==> ";
 			SetConsoleTextAttribute(hConsole, white);
-			cout <<"Would you like to play again?(y/n): ";
+			cout << "Would you like to play again?(y/n): ";
 
 			cin >> playAgainChoice;
 
@@ -176,7 +181,7 @@ int main()
 }
 
 /*********************************************
-This function draws the TicTacToe board using values from the slot array. 
+This function draws the TicTacToe board using values from the slot array.
 Player choices formatted with color(X = green, O = red).
 *********************************************/
 void board()
@@ -189,7 +194,15 @@ void board()
 
 	// game title 
 	cout << "\n\n\t\t   Tic Tac Toe\n\n";
-	cout << "\t  Player 1 (X)  -  Player 2 (O)" << endl << endl;
+	cout << "\t    Player 1 ";
+	SetConsoleTextAttribute(hConsole, green);
+	cout << "(X)";
+	SetConsoleTextAttribute(hConsole, white);
+	cout << "     Player 2 ";
+	SetConsoleTextAttribute(hConsole, red);
+	cout <<"(O)" << endl;
+	SetConsoleTextAttribute(hConsole, white);
+	cout << "\t    Score: " << score[0] << "         " << "Score: " << score[1] << endl << endl;
 	cout << endl;
 	cout << "\t\t _________________" << endl;
 	cout << "\t\t|     |     |     |" << endl;
@@ -232,7 +245,7 @@ void board()
 	}
 	cout << slot[3];
 	SetConsoleTextAttribute(hConsole, white);
-	cout <<  "  |" << endl;
+	cout << "  |" << endl;
 	cout << "\t\t|_____|_____|_____|" << endl;
 	cout << "\t\t|     |     |     |" << endl;
 	cout << "\t\t|  ";
@@ -276,7 +289,7 @@ void board()
 	SetConsoleTextAttribute(hConsole, white);
 	cout << "  |" << endl;
 	cout << "\t\t|_____|_____|_____|" << endl;
-	cout << "\t\t|     |     |     |" << endl ;
+	cout << "\t\t|     |     |     |" << endl;
 	cout << "\t\t|  ";
 
 	// if character in slot 7 is 'X' then mark it green, else if mark is 'O' mark it red
@@ -375,5 +388,6 @@ string checkStatus()
 		return "inProgress";
 	}
 }
+
 
 //END OF PROJECT

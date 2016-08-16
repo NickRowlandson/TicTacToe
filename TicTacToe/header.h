@@ -11,6 +11,7 @@
 #include <string>
 #include <windows.h> 
 #include <fstream>
+#include <vector>
 
 // colors used for text
 HANDLE  hConsole;

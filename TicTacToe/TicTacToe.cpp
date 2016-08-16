@@ -22,16 +22,24 @@ int main()
 		string i, playAgainChoice;
 		char mark;
 
+		// colors!
 		hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
 		do
 		{
 			board();
-			player = (player % 2) ? 1 : 2;
+			if (player % 2)
+			{
+				player = 1;
+			}
+			else 
+			{
+				player = 2;
+			}
 
-			SetConsoleTextAttribute(hConsole, 14);
+			SetConsoleTextAttribute(hConsole, yellow);
 			cout << "\t  ==> ";
-			SetConsoleTextAttribute(hConsole, 15);
+			SetConsoleTextAttribute(hConsole, white);
 			cout << "Player " << player << ", enter a number:  ";
 
 			cin >> choice;
@@ -95,36 +103,40 @@ int main()
 
 		board();
 
+		// if i is equal to 'winner' then state the winner, else display game draw 
 		if (i == "winner")
 		{
-			SetConsoleTextAttribute(hConsole, 14);
+			SetConsoleTextAttribute(hConsole, yellow);
 			cout << "\a\t  ==> ";
-			SetConsoleTextAttribute(hConsole, 15);
+			SetConsoleTextAttribute(hConsole, white);
 			cout << "Player " << --player << " wins!";
 		}
 		else
 		{
-			SetConsoleTextAttribute(hConsole, 14);
+			SetConsoleTextAttribute(hConsole, yellow);
 			cout << "\a\t  ==> ";
-			SetConsoleTextAttribute(hConsole, 15);
+			SetConsoleTextAttribute(hConsole, white);
 			cout << "Game draw...";
 		}
 
 		cin.ignore();
 		cin.get();
 
-		// check to make sure correct selection for play again was made 
+		// check to make sure valid selection for play again was made 
 		while(!correctSelection)
 		{
-			SetConsoleTextAttribute(hConsole, 14);
+			// ask if player wants to go again
+			SetConsoleTextAttribute(hConsole, yellow);
 			cout << "\t  ==> ";
-			SetConsoleTextAttribute(hConsole, 15);
+			SetConsoleTextAttribute(hConsole, white);
 			cout <<"Would you like to play again?(y/n): ";
 
 			cin >> playAgainChoice;
 
+			// if 'y' then set playAgain to true, else if 'n' terminate program
 			if (playAgainChoice == "y" || playAgainChoice == "Y" || playAgainChoice == "yes")
 			{
+				// set items in slot array back to original characters
 				slot[1] = { '1' };
 				slot[2] = { '2' };
 				slot[3] = { '3' };
@@ -144,9 +156,9 @@ int main()
 			}
 			else
 			{
-				SetConsoleTextAttribute(hConsole, 14);
+				SetConsoleTextAttribute(hConsole, yellow);
 				cout << "\t  ==> ";
-				SetConsoleTextAttribute(hConsole, 15);
+				SetConsoleTextAttribute(hConsole, white);
 				cout << "Enter a valid response. type 'y' to keep playing or 'n' to close application." << endl;
 				correctSelection = false;
 			}
@@ -157,151 +169,147 @@ int main()
 	return 0;
 }
 
-//FUNCTION TO DRAW BOARD OF TIC TAC TOE WITH PLAYERS MARK
+/*********************************************
+This function draws the TicTacToe board using values from the slot array. Player choices formatted with color(X = green, O = red).
+*********************************************/
 void board()
 {
+	// colors!
 	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
 	// clear screen 
 	system("cls");
 
+	// game title 
 	cout << "\n\n\t\t   Tic Tac Toe\n\n";
-
 	cout << "\t  Player 1 (X)  -  Player 2 (O)" << endl << endl;
 	cout << endl;
-
 	cout << "\t\t _________________" << endl;
 	cout << "\t\t|     |     |     |" << endl;
-
 	cout << "\t\t|  ";
 
+	// if character in slot 1 is 'X' then mark it green, else if mark is 'O' mark it red
 	if (slot[1] == 'X')
 	{
-		SetConsoleTextAttribute(hConsole, 10);
+		SetConsoleTextAttribute(hConsole, red);
 	}
 	else if (slot[1] == 'O')
 	{
-		SetConsoleTextAttribute(hConsole, 12);
+		SetConsoleTextAttribute(hConsole, green);
 	}
 	cout << slot[1];
-
-	SetConsoleTextAttribute(hConsole, 15);
+	SetConsoleTextAttribute(hConsole, white);
 	cout << "  |  ";
 
+	// if character in slot 2 is 'X' then mark it green, else if mark is 'O' mark it red
 	if (slot[2] == 'X')
 	{
-		SetConsoleTextAttribute(hConsole, 10);
+		SetConsoleTextAttribute(hConsole, red);
 	}
 	else if (slot[2] == 'O')
 	{
-		SetConsoleTextAttribute(hConsole, 12);
+		SetConsoleTextAttribute(hConsole, green);
 	}
 	cout << slot[2];
-
-	SetConsoleTextAttribute(hConsole, 15);
+	SetConsoleTextAttribute(hConsole, white);
 	cout << "  |  ";
 
+	// if character in slot 3 is 'X' then mark it green, else if mark is 'O' mark it red
 	if (slot[3] == 'X')
 	{
-		SetConsoleTextAttribute(hConsole, 10);
+		SetConsoleTextAttribute(hConsole, red);
 	}
 	else if (slot[3] == 'O')
 	{
-		SetConsoleTextAttribute(hConsole, 12);
+		SetConsoleTextAttribute(hConsole, green);
 	}
 	cout << slot[3];
-
-	SetConsoleTextAttribute(hConsole, 15);
+	SetConsoleTextAttribute(hConsole, white);
 	cout <<  "  |" << endl;
-
 	cout << "\t\t|_____|_____|_____|" << endl;
 	cout << "\t\t|     |     |     |" << endl;
 	cout << "\t\t|  ";
 
-	// colors!
+	// if character in slot 4 is 'X' then mark it green, else if mark is 'O' mark it red
 	if (slot[4] == 'X')
 	{
-		SetConsoleTextAttribute(hConsole, 10);
+		SetConsoleTextAttribute(hConsole, red);
 	}
 	else if (slot[4] == 'O')
 	{
-		SetConsoleTextAttribute(hConsole, 12);
+		SetConsoleTextAttribute(hConsole, green);
 	}
 	cout << slot[4];
-
-	SetConsoleTextAttribute(hConsole, 15);
+	SetConsoleTextAttribute(hConsole, white);
 	cout << "  |  ";
 
+	// if character in slot 5 is 'X' then mark it green, else if mark is 'O' mark it red
 	if (slot[5] == 'X')
 	{
-		SetConsoleTextAttribute(hConsole, 10);
+		SetConsoleTextAttribute(hConsole, red);
 	}
 	else if (slot[5] == 'O')
 	{
-		SetConsoleTextAttribute(hConsole, 12);
+		SetConsoleTextAttribute(hConsole, green);
 	}
 	cout << slot[5];
-
-	SetConsoleTextAttribute(hConsole, 15);
+	SetConsoleTextAttribute(hConsole, white);
 	cout << "  |  ";
 
+	// if character in slot 6 is 'X' then mark it green, else if mark is 'O' mark it red
 	if (slot[6] == 'X')
 	{
-		SetConsoleTextAttribute(hConsole, 10);
+		SetConsoleTextAttribute(hConsole, red);
 	}
 	else if (slot[6] == 'O')
 	{
-		SetConsoleTextAttribute(hConsole, 12);
+		SetConsoleTextAttribute(hConsole, green);
 	}
 	cout << slot[6];
-
-	SetConsoleTextAttribute(hConsole, 15);
+	SetConsoleTextAttribute(hConsole, white);
 	cout << "  |" << endl;
-
 	cout << "\t\t|_____|_____|_____|" << endl;
 	cout << "\t\t|     |     |     |" << endl ;
-
 	cout << "\t\t|  ";
 
+	// if character in slot 7 is 'X' then mark it green, else if mark is 'O' mark it red
 	if (slot[7] == 'X')
 	{
-		SetConsoleTextAttribute(hConsole, 10);
+		SetConsoleTextAttribute(hConsole, red);
 	}
 	else if (slot[7] == 'O')
 	{
-		SetConsoleTextAttribute(hConsole, 12);
+		SetConsoleTextAttribute(hConsole, green);
 	}
 	cout << slot[7];
-
-	SetConsoleTextAttribute(hConsole, 15);
+	SetConsoleTextAttribute(hConsole, white);
 	cout << "  |  ";
 
+	// if character in slot 8 is 'X' then mark it green, else if mark is 'O' mark it red
 	if (slot[8] == 'X')
 	{
-		SetConsoleTextAttribute(hConsole, 10);
+		SetConsoleTextAttribute(hConsole, red);
 	}
 	else if (slot[8] == 'O')
 	{
-		SetConsoleTextAttribute(hConsole, 12);
+		SetConsoleTextAttribute(hConsole, green);
 	}
 	cout << slot[8];
-
-	SetConsoleTextAttribute(hConsole, 15);
+	SetConsoleTextAttribute(hConsole, white);
 	cout << "  |  ";
 
+	// if character in slot 9 is 'X' then mark it green, else if mark is 'O' mark it red
 	if (slot[9] == 'X')
 	{
-		SetConsoleTextAttribute(hConsole, 10);
+		SetConsoleTextAttribute(hConsole, red);
 	}
 	else if (slot[9] == 'O')
 	{
-		SetConsoleTextAttribute(hConsole, 12);
+		SetConsoleTextAttribute(hConsole, green);
 	}
 	cout << slot[9];
-
-	SetConsoleTextAttribute(hConsole, 15);
+	SetConsoleTextAttribute(hConsole, white);
 	cout << "  |" << endl;
-
 	cout << "\t\t|_____|_____|_____|" << endl << endl;
 	cout << endl;
 }
@@ -356,7 +364,6 @@ string checkStatus()
 	{
 		return "inProgress";
 	}
-
 }
 
 //END OF PROJECT

@@ -11,6 +11,10 @@
 #include <string>
 #include <windows.h> 
 
+// colors used for text
 HANDLE  hConsole;
-
-
+int red = 10;
+int green = 12;
+int white = 15;
+int yellow = 14;
+ 

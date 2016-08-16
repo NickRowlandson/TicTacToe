@@ -1,4 +1,4 @@
-// TIC TAC TOE
+// TIC TAC TOE - Final Project
 // Timothy Harasym - 200186529
 // Nicholas Rowlandson - 200167125
 
@@ -7,7 +7,6 @@
 using namespace std;
 
 char slot[10] = { 'o','1','2','3','4','5','6','7','8','9' };
-
 string checkStatus();
 void board();
 
@@ -22,12 +21,15 @@ int main()
 		string i, playAgainChoice;
 		char mark;
 
-		// colors!
+		// colors
 		hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
 		do
 		{
+			// draw the game board 
 			board();
+
+			// alternate between players. if remainder of 1 set player one, else set player two
 			if (player % 2)
 			{
 				player = 1;
@@ -37,13 +39,14 @@ int main()
 				player = 2;
 			}
 
+			// ask current player to enter a number
 			SetConsoleTextAttribute(hConsole, yellow);
 			cout << "\t  ==> ";
 			SetConsoleTextAttribute(hConsole, white);
 			cout << "Player " << player << ", enter a number:  ";
-
 			cin >> choice;
 
+			// if player equal to 1, set mark to 'X', else set mark to 'O'
 			if (player == 1)
 			{
 				mark = 'X';
@@ -53,6 +56,7 @@ int main()
 				mark = 'O';
 			}
 
+			// if chosen slot is empty, replace slot number with player mark in slot array
 			if (choice == 1 && slot[1] == '1')
 			{
 				slot[1] = mark;
@@ -98,9 +102,11 @@ int main()
 				cin.get();
 			}
 			i = checkStatus();
+			// increment player number by 1
 			player++;
 		} while (i == "inProgress");
 
+		// update the game board
 		board();
 
 		// if i is equal to 'winner' then state the winner, else display game draw 
@@ -157,7 +163,7 @@ int main()
 			else
 			{
 				SetConsoleTextAttribute(hConsole, yellow);
-				cout << "\t  ==> ";
+				cout << endl << "\t  ==> ";
 				SetConsoleTextAttribute(hConsole, white);
 				cout << "Enter a valid response. type 'y' to keep playing or 'n' to close application." << endl;
 				correctSelection = false;
@@ -170,11 +176,12 @@ int main()
 }
 
 /*********************************************
-This function draws the TicTacToe board using values from the slot array. Player choices formatted with color(X = green, O = red).
+This function draws the TicTacToe board using values from the slot array. 
+Player choices formatted with color(X = green, O = red).
 *********************************************/
 void board()
 {
-	// colors!
+	// colors
 	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
 	// clear screen 
@@ -322,6 +329,7 @@ tie =  tie between player one and two
 **********************************************/
 string checkStatus()
 {
+	// this if statement checks horizontally, vertically and diagonally if there is 3 slots of the same value, reurning 'winner' if true
 	if (slot[1] == slot[2] && slot[2] == slot[3])
 	{
 		return "winner";
@@ -354,12 +362,14 @@ string checkStatus()
 	{
 		return "winner";
 	}
+	// else if game is a draw, return 'tie'
 	else if (slot[1] != '1' && slot[2] != '2' && slot[3] != '3'
 		&& slot[4] != '4' && slot[5] != '5' && slot[6] != '6'
 		&& slot[7] != '7' && slot[8] != '8' && slot[9] != '9')
 	{
 		return "tie";
 	}
+	// else game is still in progress, return 'inProgress'
 	else
 	{
 		return "inProgress";

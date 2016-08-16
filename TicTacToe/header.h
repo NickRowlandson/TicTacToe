@@ -10,6 +10,7 @@
 #include <iostream>
 #include <string>
 #include <windows.h> 
+#include <fstream>
 
 // colors used for text
 HANDLE  hConsole;

@@ -9,4 +9,8 @@
 #include <tchar.h>
 #include <iostream>
 #include <string>
+#include <windows.h> 
+
+HANDLE  hConsole;
+
 

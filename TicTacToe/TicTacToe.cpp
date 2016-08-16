@@ -14,22 +14,36 @@ void board();
 int main()
 {
 	bool playAgain = true;
-	int player = 1, choice;
-	string i, playAgainChoice;
-	char mark;
 
 	while(playAgain)
 	{
 		bool correctSelection = false;
+		int player = 1, choice;
+		string i, playAgainChoice;
+		char mark;
+
+		hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
 		do
 		{
 			board();
 			player = (player % 2) ? 1 : 2;
 
+			SetConsoleTextAttribute(hConsole, 14);
+			cout << "\t  ==> ";
+			SetConsoleTextAttribute(hConsole, 15);
 			cout << "Player " << player << ", enter a number:  ";
+
 			cin >> choice;
 
-			mark = (player == 1) ? 'X' : 'O';
+			if (player == 1)
+			{
+				mark = 'X';
+			}
+			else
+			{
+				mark = 'O';
+			}
 
 			if (choice == 1 && slot[1] == '1')
 			{
@@ -69,7 +83,7 @@ int main()
 			}
 			else
 			{
-				cout << "Invalid Selection. Select an empty slot. ";
+				cout << "\t  Invalid Selection. Select an empty slot. ";
 
 				player--;
 				cin.ignore();
@@ -83,20 +97,30 @@ int main()
 
 		if (i == "winner")
 		{
-			cout << "\a==> Player " << --player << " win!";
+			SetConsoleTextAttribute(hConsole, 14);
+			cout << "\a\t  ==> ";
+			SetConsoleTextAttribute(hConsole, 15);
+			cout << "Player " << --player << " wins!";
 		}
 		else
 		{
-			cout << "\a==> Game draw...";
+			SetConsoleTextAttribute(hConsole, 14);
+			cout << "\a\t  ==> ";
+			SetConsoleTextAttribute(hConsole, 15);
+			cout << "Game draw...";
 		}
 
 		cin.ignore();
 		cin.get();
 
-		// check to make sure 
+		// check to make sure correct selection for play again was made 
 		while(!correctSelection)
 		{
-			cout << "Would you like to play again?(y/n): ";
+			SetConsoleTextAttribute(hConsole, 14);
+			cout << "\t  ==> ";
+			SetConsoleTextAttribute(hConsole, 15);
+			cout <<"Would you like to play again?(y/n): ";
+
 			cin >> playAgainChoice;
 
 			if (playAgainChoice == "y" || playAgainChoice == "Y" || playAgainChoice == "yes")
@@ -120,11 +144,13 @@ int main()
 			}
 			else
 			{
-				cout << "Enter a valid response. type 'y' to keep playing or 'n' to close application.";
+				SetConsoleTextAttribute(hConsole, 14);
+				cout << "\t  ==> ";
+				SetConsoleTextAttribute(hConsole, 15);
+				cout << "Enter a valid response. type 'y' to keep playing or 'n' to close application." << endl;
 				correctSelection = false;
 			}
 		}
-		
 	};
 
 	// close the application
@@ -134,6 +160,8 @@ int main()
 //FUNCTION TO DRAW BOARD OF TIC TAC TOE WITH PLAYERS MARK
 void board()
 {
+	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
 	// clear screen 
 	system("cls");
 
@@ -144,17 +172,135 @@ void board()
 
 	cout << "\t\t _________________" << endl;
 	cout << "\t\t|     |     |     |" << endl;
-	cout << "\t\t|  " << slot[1] << "  |  " << slot[2] << "  |  " << slot[3] <<  "  |" << endl;
+
+	cout << "\t\t|  ";
+
+	if (slot[1] == 'X')
+	{
+		SetConsoleTextAttribute(hConsole, 10);
+	}
+	else if (slot[1] == 'O')
+	{
+		SetConsoleTextAttribute(hConsole, 12);
+	}
+	cout << slot[1];
+
+	SetConsoleTextAttribute(hConsole, 15);
+	cout << "  |  ";
+
+	if (slot[2] == 'X')
+	{
+		SetConsoleTextAttribute(hConsole, 10);
+	}
+	else if (slot[2] == 'O')
+	{
+		SetConsoleTextAttribute(hConsole, 12);
+	}
+	cout << slot[2];
+
+	SetConsoleTextAttribute(hConsole, 15);
+	cout << "  |  ";
+
+	if (slot[3] == 'X')
+	{
+		SetConsoleTextAttribute(hConsole, 10);
+	}
+	else if (slot[3] == 'O')
+	{
+		SetConsoleTextAttribute(hConsole, 12);
+	}
+	cout << slot[3];
+
+	SetConsoleTextAttribute(hConsole, 15);
+	cout <<  "  |" << endl;
 
 	cout << "\t\t|_____|_____|_____|" << endl;
 	cout << "\t\t|     |     |     |" << endl;
+	cout << "\t\t|  ";
 
-	cout << "\t\t|  " << slot[4] << "  |  " << slot[5] << "  |  " << slot[6] << "  |" << endl;
+	// colors!
+	if (slot[4] == 'X')
+	{
+		SetConsoleTextAttribute(hConsole, 10);
+	}
+	else if (slot[4] == 'O')
+	{
+		SetConsoleTextAttribute(hConsole, 12);
+	}
+	cout << slot[4];
+
+	SetConsoleTextAttribute(hConsole, 15);
+	cout << "  |  ";
+
+	if (slot[5] == 'X')
+	{
+		SetConsoleTextAttribute(hConsole, 10);
+	}
+	else if (slot[5] == 'O')
+	{
+		SetConsoleTextAttribute(hConsole, 12);
+	}
+	cout << slot[5];
+
+	SetConsoleTextAttribute(hConsole, 15);
+	cout << "  |  ";
+
+	if (slot[6] == 'X')
+	{
+		SetConsoleTextAttribute(hConsole, 10);
+	}
+	else if (slot[6] == 'O')
+	{
+		SetConsoleTextAttribute(hConsole, 12);
+	}
+	cout << slot[6];
+
+	SetConsoleTextAttribute(hConsole, 15);
+	cout << "  |" << endl;
 
 	cout << "\t\t|_____|_____|_____|" << endl;
 	cout << "\t\t|     |     |     |" << endl ;
 
-	cout << "\t\t|  " << slot[7] << "  |  " << slot[8] << "  |  " << slot[9] << "  |" << endl;
+	cout << "\t\t|  ";
+
+	if (slot[7] == 'X')
+	{
+		SetConsoleTextAttribute(hConsole, 10);
+	}
+	else if (slot[7] == 'O')
+	{
+		SetConsoleTextAttribute(hConsole, 12);
+	}
+	cout << slot[7];
+
+	SetConsoleTextAttribute(hConsole, 15);
+	cout << "  |  ";
+
+	if (slot[8] == 'X')
+	{
+		SetConsoleTextAttribute(hConsole, 10);
+	}
+	else if (slot[8] == 'O')
+	{
+		SetConsoleTextAttribute(hConsole, 12);
+	}
+	cout << slot[8];
+
+	SetConsoleTextAttribute(hConsole, 15);
+	cout << "  |  ";
+
+	if (slot[9] == 'X')
+	{
+		SetConsoleTextAttribute(hConsole, 10);
+	}
+	else if (slot[9] == 'O')
+	{
+		SetConsoleTextAttribute(hConsole, 12);
+	}
+	cout << slot[9];
+
+	SetConsoleTextAttribute(hConsole, 15);
+	cout << "  |" << endl;
 
 	cout << "\t\t|_____|_____|_____|" << endl << endl;
 	cout << endl;

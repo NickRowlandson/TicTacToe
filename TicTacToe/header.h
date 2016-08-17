@@ -14,8 +14,10 @@
 
 // colors used for text
 HANDLE  hConsole;
-int red = 10;
-int green = 12;
-int white = 15;
-int yellow = 14;
+
+// set colors to a string value for readability
+int red = 10,
+    green = 12,
+    white = 15,
+    yellow = 14;
  

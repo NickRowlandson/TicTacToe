@@ -15,7 +15,7 @@ void board();
 
 int main()
 {
-	bool playAgain = true, validInput = false;
+	bool playAgain = true;
 	
 
 	while (playAgain)
@@ -25,7 +25,7 @@ int main()
 		char mark, choice;
 		int player = 1;
 
-		// colors
+		// colors for text
 		hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
 		do
@@ -45,7 +45,7 @@ int main()
 
 			// ask current player to enter a number
 			SetConsoleTextAttribute(hConsole, yellow); 
-			cout << "\t  ==> ";
+			cout << "\t  --> ";
 			SetConsoleTextAttribute(hConsole, white);
 			cout << "Player " << player << ", enter a number:  ";
 			cin >> choice;
@@ -99,14 +99,20 @@ int main()
 			}
 			else
 			{
-				cout << "\t  Invalid Selection. Select an empty slot. ";
+				SetConsoleTextAttribute(hConsole, yellow);
+				cout << "\a\t  --> ";
+				SetConsoleTextAttribute(hConsole, white);
+				cout << "Invalid Selection. Select an empty slot. ";
 				player--;
 				cin.ignore();
 				cin.get();
 			}
+
+			// set i via checkStatus()
 			i = checkStatus();
 			// increment player number by 1
 			player++;
+
 		} while (i == "inProgress");
 
 		// update the game board
@@ -116,7 +122,7 @@ int main()
 		if (i == "winner")
 		{
 			SetConsoleTextAttribute(hConsole, yellow);
-			cout << "\a\t  ==> ";
+			cout << "\t  --> ";
 			SetConsoleTextAttribute(hConsole, white);
 			cout << "Player " << --player << " wins!";
 			score[player - 1] = score[player - 1] + 1;
@@ -124,7 +130,7 @@ int main()
 		else
 		{
 			SetConsoleTextAttribute(hConsole, yellow);
-			cout << "\a\t  ==> ";
+			cout << "\t  --> ";
 			SetConsoleTextAttribute(hConsole, white);
 			cout << "Game draw...";
 		}
@@ -137,10 +143,9 @@ int main()
 		{
 			// ask if player wants to go again
 			SetConsoleTextAttribute(hConsole, yellow);
-			cout << "\t  ==> ";
+			cout << "\t  --> ";
 			SetConsoleTextAttribute(hConsole, white);
 			cout << "Would you like to play again?(y/n): ";
-
 			cin >> playAgainChoice;
 
 			// if 'y' then set playAgain to true, else if 'n' terminate program
@@ -167,9 +172,10 @@ int main()
 			else
 			{
 				SetConsoleTextAttribute(hConsole, yellow);
-				cout << endl << "\t  ==> ";
+				cout << endl << "\a\t  --> ";
 				SetConsoleTextAttribute(hConsole, white);
-				cout << "Enter a valid response. type 'y' to keep playing or 'n' to close application." << endl;
+				cout << "Enter a valid response." << endl;
+				cout << "\t      Type 'y' to keep playing or 'n' to close application." << endl;
 				correctSelection = false;
 			}
 		}
@@ -185,23 +191,23 @@ Player choices formatted with color(X = green, O = red).
 *********************************************/
 void board()
 {
-	// colors
+	// colors for text
 	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
 	// clear screen 
 	system("cls");
 
 	// game title 
-	cout << "\n\n\t\t   Tic Tac Toe\n\n";
-	cout << "\t    Player 1 ";
+	cout << "\n\n\t\t    TIC TAC TOE\n\n";
+	cout << "\t     PLAYER 1 ";
 	SetConsoleTextAttribute(hConsole, green);
 	cout << "(X)";
 	SetConsoleTextAttribute(hConsole, white);
-	cout << "     Player 2 ";
+	cout << "     PLAYER 2 ";
 	SetConsoleTextAttribute(hConsole, red);
 	cout <<"(O)" << endl;
 	SetConsoleTextAttribute(hConsole, white);
-	cout << "\t    Score: " << score[0] << "         " << "Score: " << score[1] << endl << endl;
+	cout << "\t     SCORE: " << score[0] << "         " << "SCORE: " << score[1] << endl << endl;
 	cout << endl;
 	cout << "\t\t _________________" << endl;
 	cout << "\t\t|     |     |     |" << endl;
@@ -387,6 +393,5 @@ string checkStatus()
 		return "inProgress";
 	}
 }
-
 
 //END OF PROJECT
